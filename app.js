@@ -124,8 +124,64 @@ const users1 = [
     },
 ]
 
+let valoresVolume =[];
+ for (usuarios of users){
+   for (key in usuarios.favoritesSounds){
+     valoresVolume.push(usuarios.favoritesSounds[key].volume)
+   }
+ }
+ 
+ console.log(valoresVolume)
+ 
 
-/**Iteración #4: Métodos findArrayIndex**
+// ----------- SACO UN ARRAY CON LOS VALORES SIN REPETIR ----------------
+const Duplicates = (mixed) =>  {
+  const result = [];
+  mixed.forEach ((item)=>{
+    if(!result.includes(item)){
+      result.push(item);}
+  })
+
+  return result;
+}
+
+// CREO UN ARRAY PARA SABER QUE DATOS SIN REPETIR HAY PARA LUEGO CONTAR LOS REPETIDOS QUE HAY EN ARRAY CON LOS VALORES REPETIDOS
+let  noDuplicate =Duplicates(valoresVolume);
+
+// CREO UN ARRAY PARA QUE ME GUARDE LOS VALORES DE CUANTAS VECES ESTA REPETIDO ESE VALOR
+let contadorVolume = [];
+// EL S ME SERVIRA PARA LUEGO PONER EL INDICE DE contadorVolume y asi guardar los valores
+let s=-1
+//me creo ccc que me servira para contar el numero de veces se repite el valor de volumen
+let ccc
+
+noDuplicate.forEach((volumenIndividual)=>{
+  //contador lo incializo a 0 para que cuando coja otro valor de volumen empiece a contar de nuevo. 
+  ccc=0;
+  
+  // s es el indice del array que almacena los resultados cada vez que pase por aqui le damos el valor +1 para que grabe en la siguiente posicion
+  s++;
+  valoresVolume.forEach((elementos)=>{
+    if (volumenIndividual==elementos){
+      ccc++
+    }
+
+  })
+  // Almaceno los resultador en un array 
+  contadorVolume [s]=  "Para el volumen "+volumenIndividual+": "+ccc;
+})
+
+console.log("Los valores a buscar son: ")
+console.log(noDuplicate)
+console.log("Los valores en total son: ")
+console.log(valoresVolume)
+console.log(contadorVolume);
+
+
+
+
+
+/*Iteración #4: Métodos findArrayIndex**
 
 Crea una función llamada `findArrayIndex` que reciba como parametros un array de textos y un texto y devuelve la posición del array cuando el valor del array sea igual al valor del texto que enviaste como parametro. Haz varios ejemplos y compruebalos.
 
@@ -171,7 +227,7 @@ const rollDice = (caras) => {
 rollDice(6)
 
 
-/**Iteración #6: Función swap**
+/*Iteración #6: Función swap**
 
 Crea una función llamada `swap()` que reciba un array y dos parametros que sean indices del array. La función deberá intercambiar la posición de los valores de los indices que hayamos enviado como parametro. Retorna el array resultante.
 
